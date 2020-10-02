@@ -5,7 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import './App.css';
+import './App.scss';
 
 function App() {
   const Register = lazy(() => import('./register/register'));
@@ -16,17 +16,9 @@ function App() {
     <Router>
       <div>
         <nav>
-          <ul>
-            <li>
-              <Link to="/">join</Link>
-            </li>
-            <li>
-              <Link to="/complete">complete</Link>
-            </li>
-            <li>
-              <Link to="/register">register</Link>
-            </li>
-          </ul>
+          <Link to="/">join</Link>
+          <Link to="/complete">complete</Link>
+          <Link to="/register">register</Link>
         </nav>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>

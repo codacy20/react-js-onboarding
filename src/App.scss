@@ -1,0 +1,11 @@
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  a {
+    margin: 2vh 2vw;
+  }
+}
