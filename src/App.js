@@ -1,7 +1,4 @@
-import React from 'react';
-import Register from './register/register';
-import Complete from './complete/complete';
-import Join from './join/join';
+import React, { Suspense, lazy } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,6 +8,10 @@ import {
 import './App.css';
 
 function App() {
+  const Register = lazy(() => import('./register/register'));
+  const Complete = lazy(() => import('./complete/complete'));
+  const Join = lazy(() => import('./join/join'));
+
   return (
     <Router>
       <div>
@@ -27,17 +28,19 @@ function App() {
             </li>
           </ul>
         </nav>
-        <Switch>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/complete">
-            <Complete />
-          </Route>
-          <Route path="/">
-            <Join />
-          </Route>
-        </Switch>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/complete">
+              <Complete />
+            </Route>
+            <Route path="/">
+              <Join />
+            </Route>
+          </Switch>
+        </Suspense>
       </div>
     </Router>
   );
