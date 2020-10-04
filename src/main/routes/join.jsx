@@ -1,11 +1,12 @@
 import React from 'react';
+import Join from '../../modules/Join/join';
 
-function Join(props) {
-    return (
-        <div>
-            <span>join</span>
-        </div>
-    );
+function JoinRoute(props) {
+  return (
+    <div>
+      <Join />
+    </div>
+  );
 }
 
-export default Join;
+export default JoinRoute;

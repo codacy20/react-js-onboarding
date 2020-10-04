@@ -1,16 +1,11 @@
 import React, { Suspense, lazy } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.scss';
 
 function App() {
-  const Register = lazy(() => import('./main/routes/register'));
-  const Complete = lazy(() => import('./main/routes/complete'));
-  const Join = lazy(() => import('./main/routes/join'));
+  const RegisterRoute = lazy(() => import('./main/routes/register'));
+  const CompleteRoute = lazy(() => import('./main/routes/complete'));
+  const JoinRoute = lazy(() => import('./main/routes/join'));
 
   return (
     <Router>
@@ -23,13 +18,13 @@ function App() {
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route path="/register">
-              <Register />
+              <RegisterRoute />
             </Route>
             <Route path="/complete">
-              <Complete />
+              <CompleteRoute />
             </Route>
             <Route path="/">
-              <Join />
+              <JoinRoute />
             </Route>
           </Switch>
         </Suspense>

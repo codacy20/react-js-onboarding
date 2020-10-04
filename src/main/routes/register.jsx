@@ -1,11 +1,12 @@
 import React from 'react';
+import Register from '../../modules/Register/register';
 
-function Register(props) {
-    return (
-        <div>
-            <span>register</span>
-        </div>
-    );
+function RegisterRoute(props) {
+  return (
+    <div>
+      <Register />
+    </div>
+  );
 }
 
-export default Register;
+export default RegisterRoute;

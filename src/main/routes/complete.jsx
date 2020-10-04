@@ -1,11 +1,12 @@
 import React from 'react';
+import Complete from '../../modules/Complete/complete';
 
-function Complete(props) {
-    return (
-        <div>
-            <span>complete</span>
-        </div>
-    );
+function CompleteRoute(props) {
+  return (
+    <div>
+      <Complete />
+    </div>
+  );
 }
 
-export default Complete;
+export default CompleteRoute;
