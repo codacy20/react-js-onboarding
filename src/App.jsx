@@ -8,9 +8,9 @@ import {
 import './App.scss';
 
 function App() {
-  const Register = lazy(() => import('./register/register'));
-  const Complete = lazy(() => import('./complete/complete'));
-  const Join = lazy(() => import('./join/join'));
+  const Register = lazy(() => import('./main/routes/register'));
+  const Complete = lazy(() => import('./main/routes/complete'));
+  const Join = lazy(() => import('./main/routes/join'));
 
   return (
     <Router>
