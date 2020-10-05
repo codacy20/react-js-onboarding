@@ -1,0 +1,25 @@
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-image: url('https://source.unsplash.com/user/erondu/880x1024');
+  p {
+    color: white;
+    z-index: 2;
+    font-size: 20px;
+    line-height: 38px;
+  }
+  #wid-50 {
+    width: 50%;
+  }
+  &::after {
+    z-index: 1;
+    background: black;
+    content: '';
+    opacity: 0.5;
+    height: inherit;
+    position: absolute;
+    width: 40%;
+  }
+}

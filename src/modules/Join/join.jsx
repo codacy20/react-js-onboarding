@@ -1,10 +1,19 @@
 import React from 'react';
+import ImageContainer from '../../library/common/Image-Container/ImageContainer';
+import Stepper from '../../library/common/Stepper/Stepper';
 import './join.scss';
+import '../../library/common/common.scss';
 
 function Join(props) {
   return (
-    <div>
-      <span>join</span>
+    <div className="container join-container">
+      <div className="left">
+        <ImageContainer />
+      </div>
+      <div className="right">
+        <Stepper />
+        <span>join</span>
+      </div>
     </div>
   );
 }
