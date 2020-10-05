@@ -12,8 +12,8 @@ function App() {
       <div>
         <nav>
           <Link to="/">join</Link>
-          <Link to="/complete">complete</Link>
           <Link to="/register">register</Link>
+          <Link to="/complete">complete</Link>
         </nav>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
