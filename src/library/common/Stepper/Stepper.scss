@@ -1,0 +1,38 @@
+.stepper-container {
+  display: flex;
+  width: 100%;
+  min-height: 190px;
+  padding: 0 90px 0 50px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  .back-container {
+    display: flex;
+    align-items: center;
+    span {
+      color: #8692a6;
+      cursor: pointer;
+    }
+  }
+  .sign-container {
+    display: flex;
+    align-items: center;
+    span {
+      color: #8692a6;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+  .step-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    span:first-child {
+      color: #bdbdbd;
+    }
+    span:last-child {
+      color: #8692a6;
+    }
+  }
+}

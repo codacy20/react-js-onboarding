@@ -3,14 +3,21 @@ import './Stepper.scss';
 
 function Stepper(props) {
   return (
-    <div>
-      <div>
+    <div className="stepper-container">
+      <div className="back-container">
         <span class="material-icons">keyboard_arrow_left</span>
         <span>Back</span>
       </div>
-      <div>
-          <span>Already have an account?</span>
-          <span>Sign In</span>
+      <div className="sign-container">
+        <span>Already have an account?</span>
+        {/* eslint-disable-next-line */}
+        <a href="#" target="_blank" rel="noopener noreferrer">
+          Sign In
+        </a>
+      </div>
+      <div className="step-container">
+        <span>step 0/0</span>
+        <span>page title</span>
       </div>
     </div>
   );
