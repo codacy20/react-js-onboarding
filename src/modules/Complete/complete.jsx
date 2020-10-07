@@ -5,13 +5,19 @@ import './complete.scss';
 import '../../library/common/common.scss';
 
 function Complete(props) {
+  console.log(props);
+
   return (
     <div className="container complete-container">
       <div className="left">
         <ImageContainer />
       </div>
       <div className="right">
-        <Stepper />
+        <Stepper
+          sign={false}
+          back={{ visible: true, url: props.url }}
+          step={{ visible: true, title: 'Residency Info.', number: 2, max: 2 }}
+        />
         <span>Complete</span>
       </div>
     </div>

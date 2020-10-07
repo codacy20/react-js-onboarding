@@ -5,13 +5,18 @@ import './register.scss';
 import '../../library/common/common.scss';
 
 function Register(props) {
+  console.log(props);
   return (
     <div className="container register-container">
       <div className="left">
         <ImageContainer />
       </div>
       <div className="right">
-        <Stepper />
+        <Stepper
+          sign={false}
+          back={{ visible: true, url: props.url }}
+          step={{ visible: true, title: 'Personal Info.', number: 1, max: 2 }}
+        />
         <span>register</span>
       </div>
     </div>

@@ -11,7 +11,7 @@ function Join(props) {
         <ImageContainer />
       </div>
       <div className="right">
-        <Stepper />
+        <Stepper back={{ visible: false }} step={{ visible: false }} />
         <span>join</span>
       </div>
     </div>
