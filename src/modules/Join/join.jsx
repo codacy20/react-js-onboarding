@@ -5,6 +5,7 @@ import './join.scss';
 import '../../library/common/common.scss';
 
 function Join(props) {
+  console.log(props);
   return (
     <div className="container join-container">
       <div className="left">
