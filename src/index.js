@@ -3,18 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux'
-import rootReducer from './main/store/reducers'
+import store from './main/store/store';
 import { Provider } from 'react-redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
 
-
-const composedEnhancers = composeWithDevTools();
-
-const store = createStore(rootReducer, composedEnhancers)
+let store2 = store;
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store2}>
     <App />
   </Provider>
   ,
