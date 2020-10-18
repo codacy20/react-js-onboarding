@@ -3,6 +3,7 @@
  */
 
 export const LAST_VISITED = 'LAST_VISITED';
+export const REMOVE_VISITED = 'REMOVE_VISITED';
 // export const TOGGLE_TODO = 'TOGGLE_TODO';
 // export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
@@ -22,6 +23,10 @@ export const VisibilityFilters = {
 
 export function lastVisited(url) {
   return { type: LAST_VISITED, url };
+}
+
+export function removeVisited(url) {
+  return { type: REMOVE_VISITED, url };
 }
 
 // export function toggleTodo(index) {

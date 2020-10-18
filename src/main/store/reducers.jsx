@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import {
   LAST_VISITED,
+  REMOVE_VISITED,
   // VisibilityFilters
 } from './actions';
 // const { SHOW_ALL } = VisibilityFilters;
@@ -17,12 +18,10 @@ import {
 function history(state = [], action) {
   switch (action.type) {
     case LAST_VISITED:
-      return [
-        ...state,
-        {
-          url: action.url,
-        },
-      ];
+      return [...state, action.url];
+    case REMOVE_VISITED:
+      console.log(action);
+      return state.filter((element) => element.url !== action.url);
     default:
       return state;
   }

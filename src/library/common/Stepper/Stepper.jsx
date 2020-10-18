@@ -1,10 +1,15 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeVisited } from '../../../main/store/actions';
 import './Stepper.scss';
 
 function Stepper(props) {
-  function navigate(url) {
-    console.log(url)
-    window.location.href = url;
+  const dispatch = useDispatch();
+  const selector = useSelector((state) => state.history);
+
+  function navigate() {
+    dispatch(removeVisited(selector[selector.length - 1]));
+    window.location.href = selector[selector.length - 2];
   }
 
   let back = 'back-container';
@@ -15,7 +20,7 @@ function Stepper(props) {
   if (props.sign === false) sign += ' display-none';
   return (
     <div className="stepper-container">
-      <div className={back} onClick={() => navigate(props.back.url)}>
+      <div className={back} onClick={() => navigate()}>
         <span className="material-icons">keyboard_arrow_left</span>
         <span>Back</span>
       </div>
