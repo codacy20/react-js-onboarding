@@ -6,10 +6,10 @@ import * as serviceWorker from './serviceWorker';
 import store from './main/store/store';
 import { Provider } from 'react-redux'
 
-let store2 = store;
+let loginStore = store;
 
 ReactDOM.render(
-  <Provider store={store2}>
+  <Provider store={loginStore}>
     <App />
   </Provider>
   ,

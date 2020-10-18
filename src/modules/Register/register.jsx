@@ -5,7 +5,7 @@ import './register.scss';
 import '../../library/common/common.scss';
 
 function Register(props) {
-  console.log(props);
+
   return (
     <div className="container register-container">
       <div className="left">

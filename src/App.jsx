@@ -1,20 +1,35 @@
 import React, { Suspense, lazy } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { lastVisited } from './main/store/actions';
 import './App.scss';
 
 function App(props) {
   const RegisterRoute = lazy(() => import('./main/routes/register'));
   const CompleteRoute = lazy(() => import('./main/routes/complete'));
   const JoinRoute = lazy(() => import('./main/routes/join'));
+  const history = useSelector((state) => state.history);
+  const dispatch = useDispatch();
 
+  function notify(url) {
+    console.log('url', url);
+    dispatch(lastVisited(url));
+    console.log(history);
+  }
 
   return (
     <Router>
       <div>
         <nav>
-          <Link to="/">join</Link>
-          <Link to="/register">register</Link>
-          <Link to="/complete">complete</Link>
+          <Link to="/" onClick={() => notify('/')}>
+            join
+          </Link>
+          <Link to="/register" onClick={() => notify('/register')}>
+            register
+          </Link>
+          <Link to="/complete" onClick={() => notify('/complete')}>
+            complete
+          </Link>
         </nav>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>

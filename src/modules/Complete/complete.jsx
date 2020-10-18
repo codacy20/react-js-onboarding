@@ -5,7 +5,6 @@ import './complete.scss';
 import '../../library/common/common.scss';
 
 function Complete(props) {
-  console.log(props);
 
   return (
     <div className="container complete-container">
