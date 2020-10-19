@@ -5,6 +5,9 @@ import './register.scss';
 import '../../library/common/common.scss';
 
 function Register(props) {
+  function navigate() {
+    window.location.href = '/complete';
+  }
 
   return (
     <div className="container register-container">
@@ -17,7 +20,12 @@ function Register(props) {
           back={{ visible: true, url: props.url }}
           step={{ visible: true, title: 'Personal Info.', number: 1, max: 2 }}
         />
-        <span>register</span>
+        <div className="register-inner-container">
+          <h2>Register Individual Account!</h2>
+          <p>
+            For the purpose of industry regulation, your details are required.
+          </p>
+        </div>
       </div>
     </div>
   );
