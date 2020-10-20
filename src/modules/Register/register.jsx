@@ -1,4 +1,5 @@
 import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import ImageContainer from '../../library/common/Image-Container/ImageContainer';
 import Stepper from '../../library/common/Stepper/Stepper';
 import './register.scss';
@@ -25,6 +26,51 @@ function Register(props) {
           <p>
             For the purpose of industry regulation, your details are required.
           </p>
+          <Formik
+            initialValues={{ email: '', password: '' }}
+            validate={(values) => {
+              const errors = {};
+              if (!values.email) {
+                errors.email = 'Required';
+              } else if (
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+              ) {
+                errors.email = 'Invalid email address';
+              }
+              return errors;
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
+              }, 400);
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <Field
+                  name="fullname"
+                  autoComplete="off"
+                  data-lpignore="true"
+                />
+                <Field
+                  type="email"
+                  name="email"
+                  autoComplete="off"
+                  data-lpignore="true"
+                />
+                <ErrorMessage name="email" component="div" />
+                <Field type="password" name="password" data-lpignore="true" />
+                <ErrorMessage name="password" component="div" />
+                <label>
+                  <Field type="checkbox" name="toggle" />
+                </label>
+                <button type="submit" disabled={isSubmitting}>
+                  Submit
+                </button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
     </div>
