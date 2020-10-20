@@ -9,17 +9,21 @@ import '../../library/common/common.scss';
 function Register(props) {
   const formik = useFormik({
     initialValues: {
-      firstName: '',
-      lastName: '',
+      fullname: '',
       email: '',
+      password: '',
     },
     validationSchema: Yup.object({
-      firstName: Yup.string()
+      fullname: Yup.string()
         .max(15, 'Must be 15 characters or less')
         .required('Required'),
-      lastName: Yup.string()
-        .max(20, 'Must be 20 characters or less')
-        .required('Required'),
+      password: Yup.string()
+        .required('No password provided.')
+        .min(8, 'Password is too short - should be 8 chars minimum.')
+        .matches(
+          /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/,
+          'Password should contain capital letter, small letter and number'
+        ),
       email: Yup.string().email('Invalid email address').required('Required'),
     }),
     onSubmit: (values) => {
@@ -44,29 +48,29 @@ function Register(props) {
             For the purpose of industry regulation, your details are required.
           </p>
           <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="fullname">fullname</label>
             <input
-              id="firstName"
-              name="firstName"
+              id="fullname"
+              name="fullname"
               type="text"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.firstName}
+              value={formik.values.fullname}
             />
-            {formik.touched.firstName && formik.errors.firstName ? (
-              <div>{formik.errors.firstName}</div>
+            {formik.touched.fullname && formik.errors.fullname ? (
+              <div>{formik.errors.fullname}</div>
             ) : null}
-            <label htmlFor="lastName">Last Name</label>
+            <label htmlFor="password">password</label>
             <input
-              id="lastName"
-              name="lastName"
-              type="text"
+              id="password"
+              name="password"
+              type="password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.lastName}
+              value={formik.values.password}
             />
-            {formik.touched.lastName && formik.errors.lastName ? (
-              <div>{formik.errors.lastName}</div>
+            {formik.touched.password && formik.errors.password ? (
+              <div>{formik.errors.password}</div>
             ) : null}
             <label htmlFor="email">Email Address</label>
             <input
