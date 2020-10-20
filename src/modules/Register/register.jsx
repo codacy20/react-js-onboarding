@@ -53,6 +53,7 @@ function Register(props) {
               id="fullname"
               name="fullname"
               type="text"
+              data-lpignore="true"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.fullname}
@@ -65,6 +66,7 @@ function Register(props) {
               id="password"
               name="password"
               type="password"
+              data-lpignore="true"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.password}
@@ -77,6 +79,7 @@ function Register(props) {
               id="email"
               name="email"
               type="email"
+              data-lpignore="true"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
