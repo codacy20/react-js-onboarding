@@ -12,6 +12,7 @@ function Register(props) {
       fullname: '',
       email: '',
       password: '',
+      agreement: false,
     },
     validationSchema: Yup.object({
       fullname: Yup.string()
@@ -25,6 +26,8 @@ function Register(props) {
           'Password should contain capital letter, small letter and number'
         ),
       email: Yup.string().email('Invalid email address').required('Required'),
+      agreement: Yup.boolean()
+      .oneOf([true], 'Must Accept Terms and Conditions'),
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -86,6 +89,18 @@ function Register(props) {
             />
             {formik.touched.email && formik.errors.email ? (
               <div>{formik.errors.email}</div>
+            ) : null}
+            <label htmlFor="email">Agreed?</label>
+            <input
+              type="checkbox"
+              name="agreement"
+              id="agreement"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+            />
+            {formik.touched.agreement && formik.errors.agreement ? (
+              <div>{formik.errors.agreement}</div>
             ) : null}
             <button type="submit">Submit</button>
           </form>
