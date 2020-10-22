@@ -33,6 +33,7 @@ function Register(props) {
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      window.location.href = '/complete';
     },
   });
 
@@ -117,7 +118,16 @@ function Register(props) {
               </div>
             </div>
             <div className="row">
-              <button type="submit">Submit</button>
+              {!formik.errors.agreement &&
+              !formik.errors.password &&
+              !formik.errors.email &&
+              !formik.errors.fullname ? (
+                <button type="submit">Register Account</button>
+              ) : (
+                <button className="disabled" type="submit">
+                  Register Account
+                </button>
+              )}
             </div>
           </form>
         </div>

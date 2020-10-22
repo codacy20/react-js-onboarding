@@ -9,8 +9,8 @@
     height: 110px;
     box-sizing: border-box;
     margin-bottom: 25px;
-    &.small{
-        height: 50px;
+    &.small {
+      height: 50px;
     }
     .warnings {
       color: red;
@@ -27,8 +27,8 @@
         label {
           margin: 0;
         }
-        input{
-            height: auto;
+        input {
+          height: auto;
         }
       }
     }
@@ -71,6 +71,11 @@
       justify-content: center;
       border: none;
       cursor: pointer;
+      &.disabled {
+        border: none;
+        outline: none;
+        background: gray;
+      }
     }
   }
 }
