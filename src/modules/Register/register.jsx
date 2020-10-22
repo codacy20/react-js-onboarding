@@ -54,7 +54,7 @@ function Register(props) {
           </p>
           <form onSubmit={formik.handleSubmit}>
             <div className="row">
-              <label htmlFor="fullname">fullname</label>
+              <label htmlFor="fullname">Your fullname*</label>
               <input
                 id="fullname"
                 name="fullname"
@@ -65,26 +65,11 @@ function Register(props) {
                 value={formik.values.fullname}
               />
               {formik.touched.fullname && formik.errors.fullname ? (
-                <div>{formik.errors.fullname}</div>
+                <div className="warnings">{formik.errors.fullname}</div>
               ) : null}
             </div>
             <div className="row">
-              <label htmlFor="password">password</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                data-lpignore="true"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.password}
-              />
-              {formik.touched.password && formik.errors.password ? (
-                <div>{formik.errors.password}</div>
-              ) : null}
-            </div>
-            <div className="row">
-              <label htmlFor="email">Email Address</label>
+              <label htmlFor="email">Email address*</label>
               <input
                 id="email"
                 name="email"
@@ -95,22 +80,39 @@ function Register(props) {
                 value={formik.values.email}
               />
               {formik.touched.email && formik.errors.email ? (
-                <div>{formik.errors.email}</div>
+                <div className="warnings">{formik.errors.email}</div>
               ) : null}
             </div>
             <div className="row">
+              <label htmlFor="password">Create password*</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                data-lpignore="true"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <div className="warnings">{formik.errors.password}</div>
+              ) : null}
+            </div>
+            <div className="row small">
               <div id="inner-row-checkbox">
-                <label htmlFor="email">Agreed?</label>
-                <input
-                  type="checkbox"
-                  name="agreement"
-                  id="agreement"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.email}
-                />
+                <div id="lbl-inp">
+                  <input
+                    type="checkbox"
+                    name="agreement"
+                    id="agreement"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.email}
+                  />
+                  <label htmlFor="email">I agree to terms & conditions</label>
+                </div>
                 {formik.touched.agreement && formik.errors.agreement ? (
-                  <div>{formik.errors.agreement}</div>
+                  <div className="warnings">{formik.errors.agreement}</div>
                 ) : null}
               </div>
             </div>
