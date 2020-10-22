@@ -26,8 +26,10 @@ function Register(props) {
           'Password should contain capital letter, small letter and number'
         ),
       email: Yup.string().email('Invalid email address').required('Required'),
-      agreement: Yup.boolean()
-      .oneOf([true], 'Must Accept Terms and Conditions'),
+      agreement: Yup.boolean().oneOf(
+        [true],
+        'Must Accept Terms and Conditions'
+      ),
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -51,58 +53,70 @@ function Register(props) {
             For the purpose of industry regulation, your details are required.
           </p>
           <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="fullname">fullname</label>
-            <input
-              id="fullname"
-              name="fullname"
-              type="text"
-              data-lpignore="true"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.fullname}
-            />
-            {formik.touched.fullname && formik.errors.fullname ? (
-              <div>{formik.errors.fullname}</div>
-            ) : null}
-            <label htmlFor="password">password</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              data-lpignore="true"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-            />
-            {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
-            ) : null}
-            <label htmlFor="email">Email Address</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              data-lpignore="true"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.email}
-            />
-            {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
-            ) : null}
-            <label htmlFor="email">Agreed?</label>
-            <input
-              type="checkbox"
-              name="agreement"
-              id="agreement"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.email}
-            />
-            {formik.touched.agreement && formik.errors.agreement ? (
-              <div>{formik.errors.agreement}</div>
-            ) : null}
-            <button type="submit">Submit</button>
+            <div className="row">
+              <label htmlFor="fullname">fullname</label>
+              <input
+                id="fullname"
+                name="fullname"
+                type="text"
+                data-lpignore="true"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.fullname}
+              />
+              {formik.touched.fullname && formik.errors.fullname ? (
+                <div>{formik.errors.fullname}</div>
+              ) : null}
+            </div>
+            <div className="row">
+              <label htmlFor="password">password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                data-lpignore="true"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+              />
+              {formik.touched.password && formik.errors.password ? (
+                <div>{formik.errors.password}</div>
+              ) : null}
+            </div>
+            <div className="row">
+              <label htmlFor="email">Email Address</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                data-lpignore="true"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+              />
+              {formik.touched.email && formik.errors.email ? (
+                <div>{formik.errors.email}</div>
+              ) : null}
+            </div>
+            <div className="row">
+              <div id="inner-row-checkbox">
+                <label htmlFor="email">Agreed?</label>
+                <input
+                  type="checkbox"
+                  name="agreement"
+                  id="agreement"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
+                />
+                {formik.touched.agreement && formik.errors.agreement ? (
+                  <div>{formik.errors.agreement}</div>
+                ) : null}
+              </div>
+            </div>
+            <div className="row">
+              <button type="submit">Submit</button>
+            </div>
           </form>
         </div>
       </div>
