@@ -1,0 +1,40 @@
+.complete-inner-container {
+  padding: 130px;
+  p {
+    color: #8692a6;
+  }
+  .row:nth-child(2) {
+    select {
+      height: 64px;
+      left: 793px;
+      border: 1px solid #8692a6;
+      box-sizing: border-box;
+      border-radius: 6px;
+      font-size: 14px;
+      padding: 0 30px;
+    }
+  }
+  .row:first-child {
+    #row-inner-phone {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      input {
+        width: 100%;
+        border-left: none;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+      }
+      select {
+        border: 1px solid #8692a6;
+        height: 64px;
+        border-radius: 6px;
+        border-right: none;
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+        width: 110px;
+        padding-left: 30px;
+      }
+    }
+  }
+}
