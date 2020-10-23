@@ -64,12 +64,11 @@ function Complete(props) {
               <label htmlFor="password">Phone number</label>
               <div id="row-inner-phone">
                 <select>
-                  <option value="grapefruit">Grapefruit</option>
-                  <option value="lime">Lime</option>
-                  <option defaultValue value="coconut">
-                    Coconut
-                  </option>
-                  <option value="mango">Mango</option>
+                  {info.map((item) => (
+                    <option value={item.callingCodes[0]}>
+                      +{item.callingCodes[0]}
+                    </option>
+                  ))}
                 </select>
                 <input
                   id="phone"
@@ -88,11 +87,11 @@ function Complete(props) {
             <div className="row">
               <label htmlFor="country">Country of residence</label>
               <select>
-                <option defaultValue value="coconut">
-                  Coconut
+                <option defaultValue value="null">
+                  Please select
                 </option>
                 {info.map((item) => (
-                  <option value="coconut">{item.name}</option>
+                  <option value={item.name}>{item.name}</option>
                 ))}
               </select>
               {formik.touched.country && formik.errors.country ? (
