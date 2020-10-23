@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMergeState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import ImageContainer from '../../library/common/Image-Container/ImageContainer';
@@ -7,35 +7,43 @@ import './complete.scss';
 import '../../library/common/common.scss';
 
 function Complete(props) {
+  let countryOptions = [];
+  const [userRequest, setUserRequest] = useMergeState({
+    loading: false,
+    user: null,
+  });
+
+  useEffect(() => {
+    setUserRequest({ loading: true });
+    fetch('https://restcountries.eu/rest/v2/all')
+      .then((results) => results.json())
+      .then((data) => {
+        setUserRequest({
+          loading: false,
+          user: data,
+        });
+      });
+  }, []);
+
   const formik = useFormik({
     initialValues: {
-      fullname: '',
-      email: '',
-      password: '',
-      agreement: false,
+      phone: '',
+      country: '',
     },
     validationSchema: Yup.object({
-      fullname: Yup.string()
-        .max(15, 'Must be 15 characters or less')
-        .required('Required'),
-      password: Yup.string()
-        .required('No password provided.')
-        .min(8, 'Password is too short - should be 8 chars minimum.')
-        .matches(
-          /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/,
-          'Password should contain capital letter, small letter and number'
-        ),
-      email: Yup.string().email('Invalid email address').required('Required'),
-      agreement: Yup.boolean().oneOf(
-        [true],
-        'Must Accept Terms and Conditions'
+      phone: Yup.string().matches(
+        /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+        'Phone number is not valid'
       ),
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
-      window.location.href = '/complete';
+      window.location.href = 'https://mobile.twitter.com/RT_Amir';
     },
   });
+
+  const { loading, user } = userRequest;
+
   return (
     <div className="container complete-container">
       <div className="left">
@@ -45,7 +53,12 @@ function Complete(props) {
         <Stepper
           sign={false}
           back={{ visible: true, url: props.url }}
-          step={{ visible: true, title: 'Residency Info.', number: 2, max: 2 }}
+          step={{
+            visible: true,
+            title: 'Residency Info.',
+            number: 2,
+            max: 2,
+          }}
         />
         <div className="complete-inner-container">
           <h2>Complete Your Profile!</h2>
@@ -59,14 +72,14 @@ function Complete(props) {
                 <select>
                   <option value="grapefruit">Grapefruit</option>
                   <option value="lime">Lime</option>
-                  <option selected value="coconut">
+                  <option defaultValue value="coconut">
                     Coconut
                   </option>
                   <option value="mango">Mango</option>
                 </select>
                 <input
-                  id="fullname"
-                  name="fullname"
+                  id="phone"
+                  name="phone"
                   type="text"
                   data-lpignore="true"
                   onChange={formik.handleChange}
@@ -74,29 +87,24 @@ function Complete(props) {
                   value={formik.values.fullname}
                 />
               </div>
-              {formik.touched.fullname && formik.errors.fullname ? (
-                <div className="warnings">{formik.errors.fullname}</div>
+              {formik.touched.phone && formik.errors.phone ? (
+                <div className="warnings">{formik.errors.phone}</div>
               ) : null}
             </div>
             <div className="row">
-              <label htmlFor="password">Country of residence</label>
+              <label htmlFor="country">Country of residence</label>
               <select>
-                <option value="grapefruit">Grapefruit</option>
-                <option value="lime">Lime</option>
-                <option selected value="coconut">
+                <option defaultValue value="coconut">
                   Coconut
                 </option>
-                <option value="mango">Mango</option>
               </select>
-              {formik.touched.password && formik.errors.password ? (
-                <div className="warnings">{formik.errors.password}</div>
+              {formik.touched.country && formik.errors.country ? (
+                <div className="warnings">{formik.errors.country}</div>
               ) : null}
             </div>
             <div className="row">
-              {!formik.errors.agreement &&
-              !formik.errors.password &&
-              !formik.errors.email &&
-              !formik.errors.fullname ? (
+              <span>{loading}</span>
+              {!formik.errors.country && !formik.errors.phone ? (
                 <button type="submit">Save & Continue</button>
               ) : (
                 <button className="disabled" type="submit">
