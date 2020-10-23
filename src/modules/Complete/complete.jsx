@@ -10,7 +10,7 @@ function Complete(props) {
   const [info, setInfo] = useState([]);
 
   const fetchInfo = async (setInfo) => {
-    const info = await fetch('https://restcountries.eu/rest/v2/all')
+    return await fetch('https://restcountries.eu/rest/v2/all')
       .then((results) => results.json())
       .then((data) => {
         setInfo(data);
@@ -65,7 +65,7 @@ function Complete(props) {
               <div id="row-inner-phone">
                 <select>
                   {info.map((item) => (
-                    <option value={item.callingCodes[0]}>
+                    <option value={item.callingCodes[0]} key={item.alpha2Code}>
                       +{item.callingCodes[0]}
                     </option>
                   ))}
@@ -91,7 +91,9 @@ function Complete(props) {
                   Please select
                 </option>
                 {info.map((item) => (
-                  <option value={item.name}>{item.name}</option>
+                  <option value={item.name} key={item.alpha2Code}>
+                    {item.name}
+                  </option>
                 ))}
               </select>
               {formik.touched.country && formik.errors.country ? (
