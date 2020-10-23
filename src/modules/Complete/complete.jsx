@@ -1,4 +1,4 @@
-import React, { useEffect, useMergeState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import ImageContainer from '../../library/common/Image-Container/ImageContainer';
@@ -7,22 +7,18 @@ import './complete.scss';
 import '../../library/common/common.scss';
 
 function Complete(props) {
-  let countryOptions = [];
-  const [userRequest, setUserRequest] = useMergeState({
-    loading: false,
-    user: null,
-  });
+  const [info, setInfo] = useState([]);
 
-  useEffect(() => {
-    setUserRequest({ loading: true });
-    fetch('https://restcountries.eu/rest/v2/all')
+  const fetchInfo = async (setInfo) => {
+    const info = await fetch('https://restcountries.eu/rest/v2/all')
       .then((results) => results.json())
       .then((data) => {
-        setUserRequest({
-          loading: false,
-          user: data,
-        });
+        setInfo(data);
       });
+  };
+
+  useEffect(() => {
+    fetchInfo(setInfo);
   }, []);
 
   const formik = useFormik({
@@ -41,8 +37,6 @@ function Complete(props) {
       window.location.href = 'https://mobile.twitter.com/RT_Amir';
     },
   });
-
-  const { loading, user } = userRequest;
 
   return (
     <div className="container complete-container">
@@ -97,13 +91,15 @@ function Complete(props) {
                 <option defaultValue value="coconut">
                   Coconut
                 </option>
+                {info.map((item) => (
+                  <option value="coconut">{item.name}</option>
+                ))}
               </select>
               {formik.touched.country && formik.errors.country ? (
                 <div className="warnings">{formik.errors.country}</div>
               ) : null}
             </div>
             <div className="row">
-              <span>{loading}</span>
               {!formik.errors.country && !formik.errors.phone ? (
                 <button type="submit">Save & Continue</button>
               ) : (
