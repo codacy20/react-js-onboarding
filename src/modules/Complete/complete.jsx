@@ -31,10 +31,11 @@ function Complete(props) {
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
         'Phone number is not valid'
       ),
+      country: Yup.string().required('Color is required!'),
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
-      window.location.href = 'https://mobile.twitter.com/RT_Amir';
+      // window.location.href = 'https://mobile.twitter.com/RT_Amir';
     },
   });
 
@@ -61,7 +62,7 @@ function Complete(props) {
           </p>
           <form onSubmit={formik.handleSubmit}>
             <div className="row">
-              <label htmlFor="password">Phone number</label>
+              <label htmlFor="password">Phone number (optional)</label>
               <div id="row-inner-phone">
                 <select>
                   {info.map((item) => (
@@ -85,8 +86,12 @@ function Complete(props) {
               ) : null}
             </div>
             <div className="row">
-              <label htmlFor="country">Country of residence</label>
-              <select>
+              <label htmlFor="country">Country of residence*</label>
+              <select
+                name="country"
+                value={formik.values.country}
+                onChange={formik.handleChange}
+              >
                 <option defaultValue value="null">
                   Please select
                 </option>
