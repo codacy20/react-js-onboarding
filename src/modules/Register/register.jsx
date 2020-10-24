@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import ImageContainer from '../../library/common/Image-Container/ImageContainer';
@@ -7,6 +8,8 @@ import './register.scss';
 import '../../library/common/common.scss';
 
 function Register(props) {
+  const selector = useSelector((state) => state.accountType);
+
   const formik = useFormik({
     initialValues: {
       fullname: '',
@@ -49,7 +52,7 @@ function Register(props) {
           step={{ visible: true, title: 'Personal Info.', number: 1, max: 2 }}
         />
         <div className="register-inner-container">
-          <h2>Register Individual Account!</h2>
+          <h2>Register {selector} Account!</h2>
           <p>
             For the purpose of industry regulation, your details are required.
           </p>
