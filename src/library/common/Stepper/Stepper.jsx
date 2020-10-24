@@ -1,15 +1,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeVisited } from '../../../main/store/actions';
+import { useHistory } from 'react-router-dom';
 import './Stepper.scss';
 
 function Stepper(props) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const selector = useSelector((state) => state.history);
 
   function navigate() {
     dispatch(removeVisited(selector[selector.length - 1]));
-    window.location.href = selector[selector.length - 2];
+    history.push(`${selector[selector.length - 1]}`);
   }
 
   let back = 'back-container';

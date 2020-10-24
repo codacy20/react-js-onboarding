@@ -4,6 +4,7 @@
 
 export const LAST_VISITED = 'LAST_VISITED';
 export const REMOVE_VISITED = 'REMOVE_VISITED';
+export const ACCOUNT_TYPE = 'ACCOUNT_TYPE';
 // export const TOGGLE_TODO = 'TOGGLE_TODO';
 // export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
@@ -27,6 +28,10 @@ export function lastVisited(url) {
 
 export function removeVisited(url) {
   return { type: REMOVE_VISITED, url };
+}
+
+export function accountType(typeOfAccount) {
+  return { type: ACCOUNT_TYPE, typeOfAccount };
 }
 
 // export function toggleTodo(index) {

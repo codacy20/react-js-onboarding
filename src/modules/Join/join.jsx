@@ -3,10 +3,19 @@ import ImageContainer from '../../library/common/Image-Container/ImageContainer'
 import Stepper from '../../library/common/Stepper/Stepper';
 import './join.scss';
 import '../../library/common/common.scss';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { accountType, lastVisited } from '../../main/store/actions';
 
 function Join(props) {
-  function navigate() {
-    window.location.href = '/register';
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  function navigate(input) {
+    if (input === 0) dispatch(accountType('Individual'));
+    else if (input === 1) dispatch(accountType('Business'));
+    dispatch(lastVisited('/register'));
+    history.push('/register');
   }
 
   return (
@@ -22,7 +31,7 @@ function Join(props) {
             To begin this journey, tell us what type of account you’d be
             opening.
           </p>
-          <button onClick={() => navigate()}>
+          <button onClick={() => navigate(0)}>
             <div className="pentagon">
               <span className="material-icons">person_outline</span>{' '}
             </div>
@@ -32,7 +41,7 @@ function Join(props) {
             </div>
             <span className="material-icons">arrow_forward</span>
           </button>
-          <button onClick={() => navigate()}>
+          <button onClick={() => navigate(1)}>
             <div className="pentagon">
               <span className="material-icons">work_outline</span>
             </div>

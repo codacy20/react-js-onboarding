@@ -1,35 +1,30 @@
 import { combineReducers } from 'redux';
-import {
-  LAST_VISITED,
-  REMOVE_VISITED,
-  // VisibilityFilters
-} from './actions';
-// const { SHOW_ALL } = VisibilityFilters;
-
-// function visibilityFilter(state = SHOW_ALL, action) {
-//   switch (action.type) {
-//     case LAST_VISITED:
-//       return action.filter;
-//     default:
-//       return state;
-//   }
-// }
+import { LAST_VISITED, REMOVE_VISITED, ACCOUNT_TYPE } from './actions';
 
 function history(state = [], action) {
   switch (action.type) {
     case LAST_VISITED:
       return [...state, action.url];
     case REMOVE_VISITED:
-      console.log(action);
-      return state.filter((element) => element.url !== action.url);
+      state.splice(-1);
+      return state;
+    default:
+      return state;
+  }
+}
+
+function accountType(state = '', action) {
+  switch (action.type) {
+    case ACCOUNT_TYPE:
+      return action.typeOfAccount;
     default:
       return state;
   }
 }
 
 const loginApp = combineReducers({
-  // visibilityFilter,
   history,
+  accountType,
 });
 
 export default loginApp;
