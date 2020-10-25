@@ -14,6 +14,8 @@ function Complete(props) {
   const [info, setInfo] = useState([]);
   const [showLoader, setShowLoader] = useState(null);
   const selector = useSelector((state) => state.accountInfo);
+  let btnClass = 'disabled';
+  let btnTxtSent = 'Sending';
 
   const fetchInfo = async (setInfo) => {
     return await fetch('https://restcountries.eu/rest/v2/all')
@@ -22,10 +24,6 @@ function Complete(props) {
         setInfo(data);
       });
   };
-
-  useEffect(() => {
-
-  }, [showLoader]);
 
   useEffect(() => {
     fetchInfo(setInfo);
@@ -45,13 +43,18 @@ function Complete(props) {
     }),
     onSubmit: (values) => {
       // alert(JSON.stringify(values, null, 2));
-      dispatch(setAccountInfo(AccountInfo.PHONENR, values.phone));
-      dispatch(setAccountInfo(AccountInfo.COUNTRY, values.country));
-      request(selector, values, setShowLoader);
-      // window.location.href = 'https://mobile.twitter.com/RT_Amir';
+      if (showLoader !== false) {
+        setShowLoader(true);
+        dispatch(setAccountInfo(AccountInfo.PHONENR, values.phone));
+        dispatch(setAccountInfo(AccountInfo.COUNTRY, values.country));
+        request(selector, values, setShowLoader);
+        // window.location.href = 'https://mobile.twitter.com/RT_Amir';
+      }
     },
   });
 
+  if (!formik.errors.country && !formik.errors.phone) btnClass = null;
+  if (showLoader === false) btnTxtSent = 'Sent';
   return (
     <div className="container complete-container">
       <div className="left">
@@ -119,11 +122,13 @@ function Complete(props) {
               ) : null}
             </div>
             <div className="row">
-              {!formik.errors.country && !formik.errors.phone ? (
-                <button type="submit">Save & Continue</button>
-              ) : (
-                <button className="disabled" type="submit">
+              {showLoader === null ? (
+                <button className={btnClass} type="submit">
                   Save & Continue
+                </button>
+              ) : (
+                <button className="sending disabled" type="submit">
+                  {btnTxtSent}
                 </button>
               )}
             </div>
