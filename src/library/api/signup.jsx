@@ -1,18 +1,15 @@
-export const request = (
-  setSubmitted,
-  { name, type, email, password, consent, phonenr, country }
-) => {
+export const request = (selector, values, setShowLoader) => {
   postData('https://5f59f40eb121580016cadfef.mockapi.io/api/signup', {
-    name,
-    type,
-    email,
-    password,
-    consent,
-    phonenr,
-    country,
+    phonenr: values.phone ? values.phone : null,
+    country: values.country ? values.country : null,
+    consent: selector.CONSENT ? selector.CONSENT : null,
+    email: selector.EMAIL ? selector.EMAIL : null,
+    name: selector.NAME ? selector.NAME : null,
+    password: selector.PASSWORD ? selector.PASSWORD : null,
+    type: selector.TYPE ? selector.TYPE : null,
   }).then((data) => {
-    setSubmitted(true);
-    console.log(data); // JSON data parsed by `data.json()` call
+    setShowLoader(false);
+    // console.log(data); // JSON data parsed by `data.json()` call
   });
 };
 

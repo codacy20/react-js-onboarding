@@ -58,5 +58,7 @@ export function setAccountInfo(type, info) {
       return { type: AccountInfo.COUNTRY, info };
     case AccountInfo.CONSENT:
       return { type: AccountInfo.CONSENT, info };
+    default:
+      return null;
   }
 }

@@ -28,7 +28,6 @@ function accountType(state = '', action) {
 }
 
 function accountInfo(state = {}, action) {
-  console.log(action);
   switch (action.type) {
     case AccountInfo.CONSENT:
       return { ...state, CONSENT: action.info };

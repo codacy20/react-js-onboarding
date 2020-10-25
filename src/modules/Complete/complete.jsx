@@ -6,10 +6,14 @@ import Stepper from '../../library/common/Stepper/Stepper';
 import './complete.scss';
 import '../../library/common/common.scss';
 import { request } from '../../library/api/signup';
+import { setAccountInfo, AccountInfo } from '../../main/store/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Complete(props) {
+  const dispatch = useDispatch();
   const [info, setInfo] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
+  const [showLoader, setShowLoader] = useState(null);
+  const selector = useSelector((state) => state.accountInfo);
 
   const fetchInfo = async (setInfo) => {
     return await fetch('https://restcountries.eu/rest/v2/all')
@@ -18,6 +22,10 @@ function Complete(props) {
         setInfo(data);
       });
   };
+
+  useEffect(() => {
+
+  }, [showLoader]);
 
   useEffect(() => {
     fetchInfo(setInfo);
@@ -36,8 +44,10 @@ function Complete(props) {
       country: Yup.string().required('Country is required!'),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      request(setSubmitted);
+      // alert(JSON.stringify(values, null, 2));
+      dispatch(setAccountInfo(AccountInfo.PHONENR, values.phone));
+      dispatch(setAccountInfo(AccountInfo.COUNTRY, values.country));
+      request(selector, values, setShowLoader);
       // window.location.href = 'https://mobile.twitter.com/RT_Amir';
     },
   });
