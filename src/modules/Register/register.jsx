@@ -6,9 +6,14 @@ import ImageContainer from '../../library/common/Image-Container/ImageContainer'
 import Stepper from '../../library/common/Stepper/Stepper';
 import './register.scss';
 import '../../library/common/common.scss';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { lastVisited } from '../../main/store/actions';
 
 function Register(props) {
   const selector = useSelector((state) => state.accountType);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -35,8 +40,9 @@ function Register(props) {
       ),
     }),
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      window.location.href = '/complete';
+      // alert(JSON.stringify(values, null, 2));
+      dispatch(lastVisited('/complete'));
+      history.push('/complete');
     },
   });
 

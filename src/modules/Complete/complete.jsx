@@ -5,11 +5,13 @@ import ImageContainer from '../../library/common/Image-Container/ImageContainer'
 import Stepper from '../../library/common/Stepper/Stepper';
 import './complete.scss';
 import '../../library/common/common.scss';
+import { request } from '../../library/api/signup';
 
 function Complete(props) {
   const [info, setInfo] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
 
-  const fetchInfo = async (setInfo) => {
+  const fetchInfo = async (setInfo, {}) => {
     return await fetch('https://restcountries.eu/rest/v2/all')
       .then((results) => results.json())
       .then((data) => {
@@ -31,10 +33,11 @@ function Complete(props) {
         /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
         'Phone number is not valid'
       ),
-      country: Yup.string().required('Color is required!'),
+      country: Yup.string().required('Country is required!'),
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      request(setSubmitted);
       // window.location.href = 'https://mobile.twitter.com/RT_Amir';
     },
   });

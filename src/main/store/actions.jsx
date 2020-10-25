@@ -5,17 +5,21 @@
 export const LAST_VISITED = 'LAST_VISITED';
 export const REMOVE_VISITED = 'REMOVE_VISITED';
 export const ACCOUNT_TYPE = 'ACCOUNT_TYPE';
+export const ACCOUNT_INFO = 'ACCOUNT_INFO';
 // export const TOGGLE_TODO = 'TOGGLE_TODO';
-// export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
 /*
  * other constants
  */
 
-export const VisibilityFilters = {
-  SHOW_ALL: 'SHOW_ALL',
-  // SHOW_COMPLETED: 'SHOW_COMPLETED',
-  // SHOW_ACTIVE: 'SHOW_ACTIVE',
+export const AccountInfo = {
+  NAME: 'NAME',
+  TYPE: 'TYPE',
+  EMAIL: 'EMAIL',
+  PASSWORD: 'PASSWORD',
+  CONSENT: 'CONSENT',
+  PHONENR: 'PHONENR',
+  COUNTRY: 'CONTRY',
 };
 
 /*
@@ -38,6 +42,6 @@ export function accountType(typeOfAccount) {
 //   return { type: TOGGLE_TODO, index };
 // }
 
-// export function setVisibilityFilter(filter) {
-//   return { type: SET_VISIBILITY_FILTER, filter };
-// }
+export function setAccountInfo(info) {
+  return { type: SET_VISIBILITY_FILTER, info };
+}
