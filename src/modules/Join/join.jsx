@@ -5,15 +5,23 @@ import './join.scss';
 import '../../library/common/common.scss';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { accountType, lastVisited } from '../../main/store/actions';
+import {
+  accountType,
+  lastVisited,
+  setAccountInfo,
+  AccountInfo,
+} from '../../main/store/actions';
 
 function Join(props) {
   const history = useHistory();
   const dispatch = useDispatch();
 
   function navigate(input) {
-    if (input === 0) dispatch(accountType('Individual'));
-    else if (input === 1) dispatch(accountType('Business'));
+    let accountTypeInput = '';
+    if (input === 0) accountTypeInput = 'Individual';
+    else if (input === 1) accountTypeInput = 'Business';
+    dispatch(accountType(accountTypeInput));
+    dispatch(setAccountInfo(AccountInfo.TYPE, accountTypeInput));
     dispatch(lastVisited('/register'));
     history.push('/register');
   }

@@ -11,7 +11,7 @@ function Complete(props) {
   const [info, setInfo] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
-  const fetchInfo = async (setInfo, {}) => {
+  const fetchInfo = async (setInfo) => {
     return await fetch('https://restcountries.eu/rest/v2/all')
       .then((results) => results.json())
       .then((data) => {

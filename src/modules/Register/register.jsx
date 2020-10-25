@@ -8,7 +8,11 @@ import './register.scss';
 import '../../library/common/common.scss';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { lastVisited } from '../../main/store/actions';
+import {
+  lastVisited,
+  setAccountInfo,
+  AccountInfo,
+} from '../../main/store/actions';
 
 function Register(props) {
   const selector = useSelector((state) => state.accountType);
@@ -41,6 +45,10 @@ function Register(props) {
     }),
     onSubmit: (values) => {
       // alert(JSON.stringify(values, null, 2));
+      dispatch(setAccountInfo(AccountInfo.CONSENT, values.agreement));
+      dispatch(setAccountInfo(AccountInfo.EMAIL, values.email));
+      dispatch(setAccountInfo(AccountInfo.NAME, values.fullname));
+      dispatch(setAccountInfo(AccountInfo.PASSWORD, values.password));
       dispatch(lastVisited('/complete'));
       history.push('/complete');
     },

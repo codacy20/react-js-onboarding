@@ -42,6 +42,21 @@ export function accountType(typeOfAccount) {
 //   return { type: TOGGLE_TODO, index };
 // }
 
-export function setAccountInfo(info) {
-  return { type: SET_VISIBILITY_FILTER, info };
+export function setAccountInfo(type, info) {
+  switch (type) {
+    case AccountInfo.NAME:
+      return { type: AccountInfo.NAME, info };
+    case AccountInfo.TYPE:
+      return { type: AccountInfo.TYPE, info };
+    case AccountInfo.PHONENR:
+      return { type: AccountInfo.PHONENR, info };
+    case AccountInfo.PASSWORD:
+      return { type: AccountInfo.PASSWORD, info };
+    case AccountInfo.EMAIL:
+      return { type: AccountInfo.EMAIL, info };
+    case AccountInfo.COUNTRY:
+      return { type: AccountInfo.COUNTRY, info };
+    case AccountInfo.CONSENT:
+      return { type: AccountInfo.CONSENT, info };
+  }
 }
