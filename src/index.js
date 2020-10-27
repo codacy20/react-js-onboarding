@@ -5,12 +5,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './main/store/store';
 import { Provider } from 'react-redux'
+import { BreakpointProvider } from 'react-socks';
 
 let loginStore = store;
 
 ReactDOM.render(
   <Provider store={loginStore}>
-    <App />
+    <BreakpointProvider>
+      <App />
+    </BreakpointProvider>
   </Provider>
   ,
   document.getElementById('root')

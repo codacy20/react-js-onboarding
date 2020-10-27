@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Breakpoint } from 'react-socks';
+
 import ImageContainer from '../../library/common/Image-Container/ImageContainer';
 import Stepper from '../../library/common/Stepper/Stepper';
 import './complete.scss';
 import '../../library/common/common.scss';
 import { request } from '../../library/api/signup';
 import { setAccountInfo, AccountInfo } from '../../main/store/actions';
-import { useDispatch, useSelector } from 'react-redux';
 
 function Complete(props) {
   const dispatch = useDispatch();
@@ -57,9 +59,9 @@ function Complete(props) {
   if (showLoader === false) btnTxtSent = 'Sent';
   return (
     <div className="container complete-container">
-      <div className="left">
+      <Breakpoint className="left" medium up>
         <ImageContainer />
-      </div>
+      </Breakpoint>
       <div className="right">
         <Stepper
           sign={false}

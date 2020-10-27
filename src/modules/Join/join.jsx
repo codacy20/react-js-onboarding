@@ -1,10 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Breakpoint } from 'react-socks';
+
 import ImageContainer from '../../library/common/Image-Container/ImageContainer';
 import Stepper from '../../library/common/Stepper/Stepper';
 import './join.scss';
 import '../../library/common/common.scss';
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import {
   accountType,
   lastVisited,
@@ -28,9 +30,9 @@ function Join(props) {
 
   return (
     <div className="container join-container">
-      <div className="left">
+      <Breakpoint className="left" medium up>
         <ImageContainer />
-      </div>
+      </Breakpoint>
       <div className="right">
         <Stepper back={{ visible: false }} step={{ visible: false }} />
         <div className="join-inner-container">

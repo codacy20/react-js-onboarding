@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { Breakpoint } from 'react-socks';
+
 import ImageContainer from '../../library/common/Image-Container/ImageContainer';
 import Stepper from '../../library/common/Stepper/Stepper';
 import './register.scss';
@@ -56,9 +58,9 @@ function Register(props) {
 
   return (
     <div className="container register-container">
-      <div className="left">
+      <Breakpoint className="left" medium up>
         <ImageContainer />
-      </div>
+      </Breakpoint>
       <div className="right">
         <Stepper
           sign={false}
