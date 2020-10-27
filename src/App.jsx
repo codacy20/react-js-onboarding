@@ -19,15 +19,9 @@ function App(props) {
     <Router>
       <div>
         <nav>
-          <Link to="/" onClick={() => notify('/')}>
-            join
-          </Link>
-          <Link to="/register" onClick={() => notify('/register')}>
-            register
-          </Link>
-          <Link to="/complete" onClick={() => notify('/complete')}>
-            complete
-          </Link>
+          <Link to="/" onClick={() => notify('/')}></Link>
+          <Link to="/register" onClick={() => notify('/register')}></Link>
+          <Link to="/complete" onClick={() => notify('/complete')}></Link>
         </nav>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>

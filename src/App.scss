@@ -8,7 +8,11 @@ nav {
   bottom: 0;
   width: 100vw;
   a {
-    margin: 2vh 2vw;
+    margin: 2vh 1vw;
+    width: 10px;
+    height: 10px;
+    background: #1565d8;
+    border-radius: 50%;
   }
 }
 

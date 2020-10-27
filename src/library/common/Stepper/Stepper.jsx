@@ -30,7 +30,7 @@ function Stepper(props) {
         <span>Already have an account?</span>
         <span>&nbsp;</span>
         {/* eslint-disable-next-line */}
-        <a href="#" target="_blank" rel="noopener noreferrer">
+        <a href="#" rel="noopener noreferrer" onClick={()=>alert('Signin functionality has not been implemented')}>
           Sign In
         </a>
       </div>
